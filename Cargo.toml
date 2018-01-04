@@ -1,0 +1,6 @@
+[package]
+name = "wash"
+version = "0.1.0"
+authors = ["William Fleming"]
+
+[dependencies]
