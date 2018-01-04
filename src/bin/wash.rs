@@ -9,7 +9,7 @@ use std::error::Error;
 use std::env;
 use std::fs;
 
-use wash::prompt;
+use wash::prompt::Prompt;
 use wash::shell;
 use wash::history::History;
 use wash::parser;
@@ -20,7 +20,11 @@ fn main() {
     
     // main shell loop
     loop {
+        // buf for input
         let mut input = String::new();
+        // display prompt
+        print!("{} ", Prompt::display());
+        io::stdout().flush();
         // READLINE
         io::stdin().read_line(&mut input);
         // write history

@@ -2,7 +2,7 @@
 use std::env;
 
 
-struct Prompt {
+pub struct Prompt {
     user: String,
     cwd: String,
     hostname: String,
@@ -17,9 +17,9 @@ impl Prompt {
         }
     }
 
-    pub fn prompt_display() -> String {
+    pub fn display() -> String {
         let p = Prompt::create_prompt();
-        format!("{}@{} {}:~", p.user, p.hostname, p.cwd)
+        format!("{}@{}:{}>", p.user, p.hostname, p.cwd)
     }
 
     fn get_user() -> String {
