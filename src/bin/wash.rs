@@ -9,16 +9,22 @@ use std::error::Error;
 use std::env;
 use std::fs;
 
+use wash::prompt;
+use wash::shell;
+use wash::history::History;
+use wash::parser;
+
 fn main() {
-    // init history
-    let home = env::home_dir().unwrap();
-    let path = Path::new(".jshell_history");
-    let history_file = format!("{}/{}", home.to_str().unwrap(), path.to_str().unwrap());
-    let mut history = fs::File::open(history_file).unwrap();
+    // setup history
+    let history_file = History::setup_history();
+    
     // main shell loop
     loop {
         let mut input = String::new();
+        // READLINE
         io::stdin().read_line(&mut input);
+        // write history
+        History::write_history(history_file.clone(), input.clone());  
         if input.starts_with("cd") || input.starts_with("ls") {
             match input.as_str() {
                 "cd\n" => {
@@ -46,14 +52,6 @@ fn main() {
             }
         } else {
             Command::new(&input);
-            match history.write_all(input.as_bytes()) {
-                Err(why) => {
-                    println!("Failed to write to {}: {}",
-                             path.display(),
-                             why.description())
-                }
-                Ok(_) => {}
-            }
         }
     }
 }
