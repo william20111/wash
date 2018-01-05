@@ -1,8 +1,9 @@
 WIP wash shell..
 
-- [x] History
-- [x] Prompt
+- [x] Execute programs
+- [] Change Directory
 - [] Pipes
-- [] cd
-- [] ls
-
+- [] Arrow Key movement
+- [] History
+- [x] Prompt
+- [] List files
