@@ -16,15 +16,15 @@ fn main() {
     // setup history
     let history_file = History::setup_history();
     let exit_code: i8 = 0;
-    let mut directory = Prompt::create_prompt();
+    let mut directory = Prompt::setup_prompt();
     // main shell loop
     loop {
         // buf for input
         let mut input = String::new();
         // update prompt
-        let prompt = Prompt::display();
+        let directory = directory.update();
         // display prompt
-        print!("{} ", prompt);
+        print!("{} ", directory.display());
         io::stdout().flush();
         // READLINE
         io::stdin().read_line(&mut input);

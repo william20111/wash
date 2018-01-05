@@ -6,6 +6,7 @@ use std::io;
 use std::io::Write;
 
 use prompt::Prompt;
+use commands;
 
 #[derive(Debug, Clone)]
 pub struct CommandTable {
@@ -48,7 +49,12 @@ impl CommandTable {
         // check if its a builtin
         let c = ct.clone();
         if ct.is_builtin() {
-            println!("builtin")
+            println!("builtin");
+        //    match ct.cmd.as_str() {
+        //        "cd" => commands::cd(),
+        //        "ls" => commands::ls(),
+        //        _ => commands::notfound(),
+        //    }
         } else {
             if c.args.is_some() {
                 println!("{:?}", &c);

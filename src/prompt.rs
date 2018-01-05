@@ -8,7 +8,7 @@ pub struct Prompt {
 }
 
 impl Prompt {
-    pub fn create_prompt() -> Prompt {
+    pub fn setup_prompt() -> Prompt {
         Prompt {
             user: Prompt::get_user(),
             cwd: Prompt::get_cur_dir(),
@@ -16,9 +16,16 @@ impl Prompt {
         }
     }
 
-    pub fn display() -> String {
-        let p = Prompt::create_prompt();
-        format!("{}@{}:{}>", p.user, p.hostname, p.cwd)
+    pub fn display(&self) -> String {
+        format!("{}@{}:{}>", self.user, self.hostname, self.cwd)
+    }
+
+    pub fn update(&self) -> Prompt {
+        Prompt {
+            user: Prompt::get_user(),
+            cwd: Prompt::get_cur_dir(),
+            hostname: Prompt::get_hostname(),
+        }
     }
 
     //pub fn update_prompt(&self, dir: String) -> String {}
