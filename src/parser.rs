@@ -39,25 +39,24 @@ impl CommandTable {
                 args: None,
             }
         } else {
-            let cmd = cmd_parse.split_off(0);
+            let cmd = cmd_parse.remove(0);
             let args: Vec<String> = cmd_parse.iter().map(|b| b.to_string()).collect();
             CommandTable {
-                cmd: cmd[0].to_string(),
+                cmd: cmd.to_string(),
                 args: Some(args),
             }
         };
         // check if its a builtin
         let c = ct.clone();
-        if ct.is_builtin() {
-            println!("builtin");
-        //    match ct.cmd.as_str() {
-        //        "cd" => commands::cd(),
-        //        "ls" => commands::ls(),
-        //        _ => commands::notfound(),
-        //    }
+        if ct.clone().is_builtin() {
+            match ct.cmd.as_str() {
+                //        "cd" => commands::cd(),
+                "ls" => commands::ls::exec(Prompt::get_cur_dir()),
+                "cd" => commands::cd::exec(ct.args.unwrap().join(" ")),
+                _ => commands::notfound(),
+            }
         } else {
             if c.args.is_some() {
-                println!("{:?}", &c);
                 let p = Command::new(c.cmd)
                     .args(&c.args.unwrap())
                     .current_dir(Prompt::get_cur_dir())

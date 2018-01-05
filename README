@@ -1,9 +1,13 @@
-WIP wash shell..
+wash shell..
+
+Continued quest to learn more rust features, decided to write a shell.
+
+#Features:
 
 - [x] Execute programs
-- [] Change Directory
+- [x] Change Directory
 - [] Pipes
 - [] Arrow Key movement
 - [] History
 - [x] Prompt
-- [] List files
+- [x] List files

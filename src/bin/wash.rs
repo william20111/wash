@@ -14,6 +14,10 @@ use wash::parser;
 
 fn main() {
     // setup history
+    //let mut x: Vec<i8> = vec![1, 2, 3, 4, 5, 6];
+    //let x2 = x.split_off(1);
+    //println!("x {:?} , x2 {:?}", x, x2);
+
     let history_file = History::setup_history();
     let exit_code: i8 = 0;
     let mut directory = Prompt::setup_prompt();
